@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Nemukhina Signal Reader">
+<rect width="256" height="256" rx="54" fill="#172425"/>
+<circle cx="128" cy="128" r="76" fill="none" stroke="#B9C9BE" stroke-width="5"/>
+<circle cx="128" cy="128" r="48" fill="none" stroke="#607875" stroke-width="2"/>
+<path d="M64 157 109 92l35 68 48-87" fill="none" stroke="#D2AB7B" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
+<circle cx="109" cy="92" r="10" fill="#EAD0A8"/>
+<circle cx="192" cy="73" r="10" fill="#EAD0A8"/>
+</svg>
