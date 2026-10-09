@@ -21,7 +21,3 @@
 **Статус:** открытый GitHub-релиз. Публикация в каталоге ChatGPT пока не одобрена; условия доступа к MCP зависят от поддерживаемого ИИ-клиента. Не отправляйте персональные данные и секреты в публичный поиск. Инфраструктурные ограничения нагрузки ещё требуют подтверждения.
 
 **Автор:** Марина Немухина / Marina Nemukhina.
-
-## English summary
-
-**Nemukhina Signal Reader — expands the space of possibilities.** A reasoning workflow for interpreting signals, testing competing causal explanations, and choosing informative next checks under uncertainty. Includes 13 reference sections, a standalone skill and four read-only remote MCP tools for Crossref and public GitHub metadata. Free original material under CC BY 4.0 with attribution to Marina Nemukhina. GitHub release only; not yet approved for the ChatGPT directory.
