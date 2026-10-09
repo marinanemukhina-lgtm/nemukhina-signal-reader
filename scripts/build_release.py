@@ -10,7 +10,7 @@ import json
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 NAME = "nemukhina-signal-reader"
-VERSION = "v1.2.0"
+VERSION = "v1.3.0"
 
 skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
 assert skill.startswith("---\n"), "Missing YAML frontmatter"
@@ -58,6 +58,13 @@ assert len(interface['displayName']) <= 30
 assert len(interface['shortDescription']) <= 30
 assert len(interface['defaultPrompt']) <= 128
 assert 'apps' not in manifest and 'apps' not in manifest['extensions']['com.openai']
+assert interface['privacyPolicyURL'] == 'https://nemukhina-signal-reader-mcp.vercel.app/privacy'
+assert interface['termsOfServiceURL'] == 'https://nemukhina-signal-reader-mcp.vercel.app/terms'
+for entry in ('logo', 'composerIcon'):
+    asset = ROOT / 'plugin' / interface[entry].removeprefix('./')
+    assert asset.is_file(), f'Missing visual asset: {entry}'
+    assert asset.stat().st_size < 5 * 1024 * 1024
+
 server = mcp['mcpServers'][NAME]
 assert server['type'] == 'streamable-http'
 assert server['url'] == 'https://nemukhina-signal-reader-mcp.vercel.app/mcp'
@@ -67,14 +74,22 @@ plugin = DIST / f'Nemukhina-Signal-Reader-Plugin-{VERSION}.zip'
 with ZipFile(plugin, 'w', compression=ZIP_DEFLATED, compresslevel=9) as z:
     for filename in ('plugin.json', 'mcp.json', 'SUBMISSION.md'):
         z.write(ROOT / 'plugin' / filename, f'{NAME}/{filename}')
-    for filename in ('LICENSE', 'ATTRIBUTION.md', 'INSTALL.md'):
+    for filename in ('LICENSE', 'ATTRIBUTION.md', 'INSTALL.md', 'PRIVACY.md', 'TERMS.md'):
         z.write(ROOT / filename, f'{NAME}/{filename}')
+    for filename in ('REVIEW_PLAN.md', 'DEMO_SCRIPT.md', 'SECURITY_REVIEW.md', 'RELEASE_NOTES.md'):
+        z.write(ROOT / 'plugin' / filename, f'{NAME}/{filename}')
+    for asset in sorted((ROOT / 'plugin/assets').glob('*.svg')):
+        z.write(asset, f'{NAME}/assets/{asset.name}')
     for path in files:
         z.write(path, f'{NAME}/skills/{NAME}/{path.relative_to(ROOT).as_posix()}')
 with ZipFile(plugin) as z:
     assert z.testzip() is None
     assert len(z.namelist()) == len(set(z.namelist()))
     assert z.read(f'{NAME}/skills/{NAME}/SKILL.md') == (ROOT / 'SKILL.md').read_bytes()
+    for image in ('logo.svg', 'icon.svg'):
+        assert f'{NAME}/assets/{image}' in z.namelist()
+    for page in ('PRIVACY.md', 'TERMS.md'):
+        assert f'{NAME}/{page}' in z.namelist()
     for ref in refs:
         assert z.read(f'{NAME}/skills/{NAME}/{ref}') == (ROOT / ref).read_bytes()
     assert not any('.app.json' in p or '..' in Path(p).parts for p in z.namelist())
