@@ -1,20 +1,17 @@
-# Nemukhina Signal Reader v1.2.0
+# Nemukhina Signal Reader v1.3.0
 
-Бесплатная открытая версия для других пользователей и совместимых ИИ-клиентов.
+Публичный выпуск для совместимых ИИ-клиентов с переносимым плагином, отдельным скиллом и четырьмя инструментами MCP только для чтения.
 
-- **Плагин:** `Nemukhina-Signal-Reader-Plugin-v1.2.0.zip` — Agent Plugins 1.0, полная методология, 13 справочных разделов и подключение к удалённому MCP.
-- **Отдельный скилл:** `Nemukhina-Signal-Reader-v1.2.0.zip` / `skill.zip` — для клиентов с поддержкой skills.
-- **Контрольные суммы:** `SHA256SUMS.txt`.
-- **MCP:** https://nemukhina-signal-reader-mcp.vercel.app/mcp — Streamable HTTP, без аутентификации, четыре инструмента только для чтения Crossref/GitHub.
+Изменения по сравнению с v1.2.0: страницы политики конфиденциальности и условий, ссылки в метаданных, фирменная иконка, тестовые сценарии для модерации и сценарий видеодемонстрации. Все 13 методологических справочных разделов сохранены.
 
-[Инструкции RU/EN](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/blob/v1.2.0/INSTALL.md)
+Манифест подготовлен к проверке в кабинете издателя, но **это не одобрение каталога ChatGPT**. Подтверждение издателя и домена, видеодемонстрация и выполнение сценариев непосредственно в ChatGPT пока требуют действий в кабинете.
 
-Автор: Марина Немухина / Marina Nemukhina. Оригинальные материалы — CC BY 4.0 с указанием авторства. Методология не изменена при упаковке.
+Исходники: https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader
 
-Это публикация GitHub. Одобрения каталога ChatGPT пока нет. Совместимость каждой конкретной ИИ-оболочки не подтверждена; необходима поддержка соответствующего формата или удалённого MCP. Один MCP не устанавливает методологию автоматически.
+Публичный MCP: https://nemukhina-signal-reader-mcp.vercel.app/mcp
 
-Публичный сервер имеет ограничения; массовая нагрузка и инфраструктурный rate limit не проверены. Можно развернуть собственный экземпляр из исходников. Не передавайте через поисковые запросы персональные данные и секреты.
+Автор: Марина Немухина / Marina Nemukhina. Оригинальные материалы — CC BY 4.0 с указанием авторства. Нельзя передавать секреты и персональные сведения в поисковые запросы. Инфраструктурный rate-limit не подтверждён.
 
 ## English
 
-Free portable plugin, standalone skill, and public read-only MCP retrieval for compatible AI clients. Includes the full original methodology and 13 reference documents. Author: Marina Nemukhina, CC BY 4.0. This is a GitHub release, **not an approved ChatGPT directory listing**. Remote MCP uses Streamable HTTP without authentication; install the skill separately when using MCP alone. Individual client compatibility and high-volume operation are not certified.
+Portable plugin and standalone skill with the original methodology, 13 references, and four read-only remote MCP tools for Crossref and public GitHub metadata. v1.3.0 adds privacy and terms pages, plugin icon, review scenarios and demonstration instructions. GitHub release only; ChatGPT directory approval has not been granted. Original materials by Marina Nemukhina, CC BY 4.0.
