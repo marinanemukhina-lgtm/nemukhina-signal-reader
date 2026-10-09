@@ -1,0 +1,24 @@
+.page{min-height:100vh;background:#f7f6f2;color:#172626;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.frame{max-width:960px;margin:0 auto;padding:30px clamp(22px,5vw,72px) 32px}
+.topbar{display:flex;align-items:center;gap:13px;padding:0 0 38px;border-bottom:1px solid #d9ded8}
+.monogram{display:grid;place-items:center;width:39px;height:39px;background:#172626;color:#dbbd91;border-radius:10px;font:24px Georgia,serif}
+.brand{font-size:11px;letter-spacing:.19em;line-height:1.5;font-weight:600}
+.github{margin-left:auto;text-decoration:none;color:#60716e;font-size:13px}
+.content{padding:54px 0 16px}
+.title{font:normal clamp(39px,5.9vw,67px)/1.1 Georgia,"Times New Roman",serif;letter-spacing:-.035em;margin:0 0 37px;color:#172626}
+.paragraph{font-size:clamp(16px,1.65vw,18px);line-height:1.8;max-width:750px;margin:0 0 25px;color:#2c3e3c}
+.heading{font:normal clamp(27px,3.1vw,38px)/1.23 Georgia,serif;letter-spacing:-.02em;margin:48px 0 26px}
+.applications{display:grid;gap:0;max-width:790px;border-top:1px solid #d8ded8}
+.application{font-size:16px;line-height:1.66;margin:0;padding:15px 0;border-bottom:1px solid #e2e6e0;white-space:normal}
+.signoff{font:normal clamp(22px,3vw,30px)/1.3 Georgia,serif;margin:46px 0 13px;color:#876b48}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 70px}
+.primary,.secondary{font-size:14px;line-height:1.3;padding:15px 20px;border-radius:8px;text-decoration:none;display:inline-flex;gap:17px;align-items:center;justify-content:space-between;transition:background .16s}
+.primary{background:#182c2b;color:#fdfcf8}
+.primary:hover{background:#34514e}
+.secondary{border:1px solid #cdd6cf;color:#1c3331}
+.secondary:hover{background:#eaeee7}
+.footer{border-top:1px solid #d9ded8;padding-top:23px;font-size:13px;color:#647370;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
+.footerLinks{display:flex;flex-wrap:wrap;gap:17px}
+.footerLinks a{color:inherit;text-decoration:none}
+.footerLinks a:hover,.github:hover{text-decoration:underline}
+@media(max-width:600px){.frame{padding:22px 22px 30px}.topbar{padding-bottom:30px}.content{padding-top:40px}.title{margin-bottom:32px}.heading{margin-top:38px}.actions{flex-direction:column;margin-bottom:51px}.primary,.secondary{width:100%}.application{font-size:15px;padding:14px 0}}
