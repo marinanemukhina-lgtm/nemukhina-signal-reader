@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "nemukhina-signal-reader": {
+      "type": "streamable-http",
+      "url": "https://nemukhina-signal-reader-mcp.vercel.app/mcp"
+    }
+  }
+}

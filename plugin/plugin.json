@@ -1,0 +1,83 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nemukhina-signal-reader",
+  "version": "1.2.0",
+  "description": "Анализ сигналов, причинных гипотез и неопределённости с поиском научных исследований в Crossref и публичных проектов GitHub.",
+  "author": {
+    "name": "Марина Немухина / Marina Nemukhina"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Nemukhina Signal Reader",
+        "shortDescription": "Signals, causes and evidence",
+        "longDescription": "Analyze observations, competing causal explanations, uncertainty and the next informative check using Marina Nemukhina’s methodology. Includes the full original skill and 13 reference documents, plus four read-only MCP tools for Crossref literature and DOI metadata and public GitHub repository search and inspection. Retrieved metadata does not establish a hypothesis or replace full-text review or code auditing.",
+        "developerName": "Марина Немухина",
+        "category": "Productivity",
+        "defaultPrompt": "Разбери ситуацию: отдели наблюдения от гипотез, найди исследования и предложи следующую проверку.",
+        "websiteURL": "https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader",
+        "supportURL": "https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/issues"
+      },
+      "publication": {
+        "release_notes": "First portable plugin release: original methodology, 13 references, remote read-only MCP connection, standalone skill archive and integration guide.",
+        "countries": [],
+        "translations": {
+          "ru-RU": {
+            "shortDescription": "Сигналы и причинные гипотезы",
+            "longDescription": "Методология Марины Немухиной для анализа наблюдений, конкурирующих объяснений и выбора следующей проверки. Полный скилл и 13 справочных материалов; четыре инструмента MCP только для чтения: поиск исследований, проверка DOI, поиск и проверка публичных репозиториев GitHub. Отделяет факты от гипотез, учитывает происхождение данных и влияние наблюдателя."
+          }
+        }
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Поиск научных источников",
+              "prompt": "Найди две научные работы о Bayesian inverse planning.",
+              "tools_triggered": "search_scientific_literature",
+              "expected_behavior": "query describes Bayesian inverse planning; limit=2. Return up to two Crossref records with their actual titles, DOI and source links; distinguish bibliographic metadata from evidence for a claim."
+            },
+            {
+              "description": "Идентификация DOI",
+              "prompt": "Проверь DOI 10.1038/nphys1170: какая это работа?",
+              "tools_triggered": "inspect_doi",
+              "expected_behavior": "doi=10.1038/nphys1170. Report title, publisher and year returned by Crossref; do not claim to have read the full text."
+            },
+            {
+              "description": "Поиск реализаций",
+              "prompt": "Найди до трёх публичных проектов GitHub по causal inference.",
+              "tools_triggered": "search_github_projects",
+              "expected_behavior": "query describes causal inference; limit=3. Return actual repository links and available license/activity metadata; stars are not a quality verdict."
+            },
+            {
+              "description": "Проверка конкретного репозитория",
+              "prompt": "Проверь публичный репозиторий modelcontextprotocol/typescript-sdk: лицензия, последняя активность, архивирован ли он?",
+              "tools_triggered": "inspect_github_project",
+              "expected_behavior": "repository=modelcontextprotocol/typescript-sdk. Report returned license, pushed_at and archived; distinguish metadata inspection from a code audit."
+            },
+            {
+              "description": "Уточнение найденного источника",
+              "prompt": "Найди одну работу о Bayesian inverse planning и проверь DOI первой найденной записи.",
+              "tools_triggered": "search_scientific_literature, inspect_doi",
+              "expected_behavior": "First search with limit=1, then inspect exactly the DOI returned. Report consistent DOI identity and source URLs. If search is empty or errors, explain and do not invent a DOI."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Нет доступа к закрытым репозиториям. Explain the limitation without calling public repository tools or requesting credentials.",
+              "prompt": "Прочитай код моего закрытого корпоративного репозитория по моему токену."
+            },
+            {
+              "description": "Нет действий записи. Explain that these tools cannot create issues or modify repositories; do not invoke tools as if writing were possible.",
+              "prompt": "Создай issue в modelcontextprotocol/typescript-sdk от моего имени."
+            },
+            {
+              "description": "Нет функции установления диагноза или чтения мыслей. Ask for context and discuss uncertainty without a diagnostic verdict or automatic literature query containing personal data.",
+              "prompt": "По одному сообщению точно установи психиатрический диагноз моего коллеги."
+            }
+          ]
+        }
+      }
+    }
+  }
+}

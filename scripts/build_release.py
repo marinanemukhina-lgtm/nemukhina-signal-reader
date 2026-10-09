@@ -5,11 +5,12 @@ from zipfile import ZipFile, ZIP_DEFLATED
 import hashlib
 import re
 import shutil
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 NAME = "nemukhina-signal-reader"
-VERSION = "v1.1.0"
+VERSION = "v1.2.0"
 
 skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
 assert skill.startswith("---\n"), "Missing YAML frontmatter"
@@ -46,3 +47,37 @@ digest = hashlib.sha256(archive.read_bytes()).hexdigest()
 print(f"PASS files={len(files)} refs={len(refs)} size={archive.stat().st_size} sha256={digest}")
 print(f"ARTIFACT {archive}")
 print(f"ARTIFACT {named}")
+
+# Package the same canonical skill; never maintain a second copy of its text.
+manifest = json.loads((ROOT / 'plugin/plugin.json').read_text())
+mcp = json.loads((ROOT / 'plugin/mcp.json').read_text())
+assert manifest['name'] == NAME
+assert manifest['version'] == VERSION.removeprefix('v')
+interface = manifest['extensions']['com.openai']['interface']
+assert len(interface['displayName']) <= 30
+assert len(interface['shortDescription']) <= 30
+assert len(interface['defaultPrompt']) <= 128
+assert 'apps' not in manifest and 'apps' not in manifest['extensions']['com.openai']
+server = mcp['mcpServers'][NAME]
+assert server['type'] == 'streamable-http'
+assert server['url'] == 'https://nemukhina-signal-reader-mcp.vercel.app/mcp'
+cases = manifest['extensions']['com.openai']['review']['test_cases']
+assert len(cases['positive']) == 5 and len(cases['negative']) == 3
+plugin = DIST / f'Nemukhina-Signal-Reader-Plugin-{VERSION}.zip'
+with ZipFile(plugin, 'w', compression=ZIP_DEFLATED, compresslevel=9) as z:
+    for filename in ('plugin.json', 'mcp.json', 'SUBMISSION.md'):
+        z.write(ROOT / 'plugin' / filename, f'{NAME}/{filename}')
+    for filename in ('LICENSE', 'ATTRIBUTION.md', 'INSTALL.md'):
+        z.write(ROOT / filename, f'{NAME}/{filename}')
+    for path in files:
+        z.write(path, f'{NAME}/skills/{NAME}/{path.relative_to(ROOT).as_posix()}')
+with ZipFile(plugin) as z:
+    assert z.testzip() is None
+    assert len(z.namelist()) == len(set(z.namelist()))
+    assert z.read(f'{NAME}/skills/{NAME}/SKILL.md') == (ROOT / 'SKILL.md').read_bytes()
+    for ref in refs:
+        assert z.read(f'{NAME}/skills/{NAME}/{ref}') == (ROOT / ref).read_bytes()
+    assert not any('.app.json' in p or '..' in Path(p).parts for p in z.namelist())
+checksums = DIST / 'SHA256SUMS.txt'
+checksums.write_text(''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n' for p in (archive, named, plugin)))
+print(f'PASS portable plugin {plugin.name}; source skill preserved; 5 positive / 3 negative cases')

@@ -8,6 +8,8 @@ on:
       - 'README.md'
       - 'LICENSE'
       - 'ATTRIBUTION.md'
+      - 'INSTALL.md'
+      - 'plugin/**'
       - 'agents/**'
       - 'references/**'
       - 'scripts/build_release.py'
@@ -32,24 +34,26 @@ jobs:
           python3 - <<'PY'
           from zipfile import ZipFile
           from pathlib import Path
-          for p in (Path("dist/skill.zip"), Path("dist/Nemukhina-Signal-Reader-v1.1.0.zip")):
+          for p in Path("dist").glob("*.zip"):
               with ZipFile(p) as z:
                   assert z.testzip() is None
                   assert sum(x.endswith("/SKILL.md") for x in z.namelist()) == 1
                   assert any(x.endswith("/LICENSE") for x in z.namelist())
           print("PASS: one installable skill, license present, ZIP integrity verified")
           PY
-      - name: Опубликовать релиз v1.1.0 при его отсутствии
+      - name: Опубликовать релиз v1.2.0 при его отсутствии
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh release view v1.1.0 >/dev/null 2>&1; then
-            echo "Release v1.1.0 already exists; preserving immutable published version."
+          if gh release view v1.2.0 >/dev/null 2>&1; then
+            echo "Release v1.2.0 already exists; preserving immutable published version."
             exit 0
           fi
-          gh release create v1.1.0 \
+          gh release create v1.2.0 \
             "dist/skill.zip#skill.zip" \
-            "dist/Nemukhina-Signal-Reader-v1.1.0.zip#Nemukhina-Signal-Reader-v1.1.0.zip" \
+            "dist/Nemukhina-Signal-Reader-v1.2.0.zip#Nemukhina-Signal-Reader-v1.2.0.zip" \
+            "dist/Nemukhina-Signal-Reader-Plugin-v1.2.0.zip#Nemukhina-Signal-Reader-Plugin-v1.2.0.zip" \
+            "dist/SHA256SUMS.txt#SHA256SUMS.txt" \
             --target "$GITHUB_SHA" \
-            --title "Nemukhina Signal Reader v1.1.0" \
-            --notes "Единый устанавливаемый скилл для анализа сигналов, состояний, взаимодействий и решений. Полный исходный код, справочные разделы, CC BY 4.0 и обязательное указание авторства. Публичный MCP-сервер в релиз не входит."
+            --title "Nemukhina Signal Reader v1.2.0 — portable plugin + MCP" \
+            --notes-file plugin/RELEASE_NOTES.md
