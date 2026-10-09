@@ -32,7 +32,7 @@ export default function Home(){
    </article>
    <nav className={styles.actions} aria-label="Доступ к проекту">
      <a className={styles.primary} href={source+'/releases/latest'}>Скачать Signal Reader <span aria-hidden="true">↗</span></a>
-     <a className={styles.secondary} href={source+'/blob/main/INSTALL.md'}>Как установить <span aria-hidden="true">↗</span></a>
+     <a className={styles.secondary} href="/install">Как установить <span aria-hidden="true">→</span></a>
      <a className={styles.secondary} href={source}>Исходники <span aria-hidden="true">↗</span></a>
    </nav>
    <footer className={styles.footer}>
