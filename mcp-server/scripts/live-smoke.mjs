@@ -11,6 +11,12 @@ if (!health.ok) throw new Error('Health endpoint HTTP '+health.status);
 const status=await health.json();
 if(status?.status!=='ok'||status?.tools!==4)throw new Error('Unexpected health response '+JSON.stringify(status));
 console.log('HEALTH OK',JSON.stringify(status));
+for (const [path,needle] of [['/privacy','конфиденциальности'],['/terms','Условия использования']]) {
+  const page=await fetch(new URL(path,origin),{signal:AbortSignal.timeout(12000)});
+  const body=await page.text();
+  if (!page.ok || !body.includes(needle)) throw Error('Required policy page failed: '+path+' '+page.status);
+  console.log('PUBLIC POLICY OK',path);
+}
 const client=new Client({name:'signal-reader-production-check',version:'0.1.0'});
 try {
   await client.connect(new StreamableHTTPClientTransport(server));
