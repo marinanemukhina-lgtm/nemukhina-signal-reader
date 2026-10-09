@@ -1,0 +1,43 @@
+name: Проверка публичного MCP
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/mcp-live.yml'
+      - 'mcp-server/scripts/live-smoke.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-mcp:
+    name: Реальные запросы к опубликованному MCP
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: mcp-server
+    env:
+      MCP_TEST_ORIGIN: https://nemukhina-signal-reader-mcp.vercel.app
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+      - name: Установить зависимости
+        run: npm install --no-audit --no-fund
+      - name: Дождаться публичного адреса и выполнить MCP smoke
+        run: |
+          for attempt in 1 2 3 4 5; do
+            if node scripts/live-smoke.mjs; then
+              echo "Production MCP verified"
+              exit 0
+            fi
+            if [ "$attempt" = 5 ]; then
+              echo "Production MCP verification failed"
+              exit 1
+            fi
+            sleep 12
+          done
