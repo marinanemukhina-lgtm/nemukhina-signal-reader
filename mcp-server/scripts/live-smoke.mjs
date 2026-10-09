@@ -21,6 +21,11 @@ const page=await fetch(new URL('/',origin),{signal:AbortSignal.timeout(12000)});
 const html=await page.text();
 if(!page.ok || !html.includes('Разведывательная аналитика и HUMINT') || !html.includes('Nemukhina Signal Reader — расширяет поле возможного.'))throw Error('Canonical home page not published');
 console.log('LIVE WEBSITE DESCRIPTION OK');
+const install=await fetch(new URL('/install',origin),{signal:AbortSignal.timeout(12000)});
+const installHtml=await install.text();
+const installPhrases=['Как подключить','Полный Signal Reader','Только методология','Только поиск источников','https://nemukhina-signal-reader-mcp.vercel.app/mcp'];
+if(!install.ok || installPhrases.some(x=>!installHtml.includes(x)))throw Error('Installation guide missing expected content');
+console.log('INSTALL GUIDE OK: three ways to connect Signal Reader');
 const client=new Client({name:'signal-reader-production-check',version:'0.1.0'});
 try {
   await client.connect(new StreamableHTTPClientTransport(server));
