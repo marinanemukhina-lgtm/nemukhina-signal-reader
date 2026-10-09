@@ -194,7 +194,7 @@ For psychotherapy-process, motivational-interviewing, resistance, ambivalence, a
 
 For bargaining, deal structure, hidden preferences, concessions, anchors, BATNA, or strategic negotiation problems, also load `references/negotiation.md`.
 
-For eyewitness, testimony, memory, source contamination, repeated questioning, confidence, suggestibility, or false-confession risk, also load `references/memory-evidence.md`.
+For eyewitness, testimony, memory, source contamination, repeated questioning, confidence, suggestibility, or false-confession risk, also load `references/forensic.md` and `references/memory-evidence.md`.
 
 For signaling, mimicry, costly/honest signals, audience effects, eavesdropping, dominance/submission displays, sender-receiver conflict, or strategic communication, also load `references/ethology.md`.
 
