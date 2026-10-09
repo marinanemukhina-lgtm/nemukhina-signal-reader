@@ -1,17 +1,27 @@
-# Nemukhina Signal Reader v1.3.0
+# Nemukhina Signal Reader
 
-Публичный выпуск для совместимых ИИ-клиентов с переносимым плагином, отдельным скиллом и четырьмя инструментами MCP только для чтения.
+**Расширяет поле возможного.**
 
-Изменения по сравнению с v1.2.0: страницы политики конфиденциальности и условий, ссылки в метаданных, фирменная иконка, тестовые сценарии для модерации и сценарий видеодемонстрации. Все 13 методологических справочных разделов сохранены.
+Инструмент анализа сигналов, состояний, взаимодействий и решений в условиях неполной информации.
 
-Манифест подготовлен к проверке в кабинете издателя, но **это не одобрение каталога ChatGPT**. Подтверждение издателя и домена, видеодемонстрация и выполнение сценариев непосредственно в ChatGPT пока требуют действий в кабинете.
+Сопоставляет конкурирующие объяснения, отделяет наблюдаемые факты от предположений, проверяет происхождение и независимость сведений, учитывает влияние наблюдения на поведение. Когда исходная гипотеза перестаёт объяснять данные, расширяет пространство возможных причин и помогает выбрать следующую информативную проверку.
 
-Исходники: https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader
+**Где применяется:** разведывательная аналитика, клиническая диагностика, судебная психология, переговоры, сложные продажи, психотерапия и мотивационное интервьюирование, этология и теория сигналов, причинный анализ и многоагентные ИИ-системы.
 
-Публичный MCP: https://nemukhina-signal-reader-mcp.vercel.app/mcp
+В составе — методология Марины Немухиной с 13 справочными разделами, отдельный устанавливаемый скилл и четыре инструмента для поиска научных публикаций, проверки DOI и изучения публичных проектов GitHub. Внешние инструменты предоставляют источники и метаданные; выводы требуют самостоятельной проверки.
 
-Автор: Марина Немухина / Marina Nemukhina. Оригинальные материалы — CC BY 4.0 с указанием авторства. Нельзя передавать секреты и персональные сведения в поисковые запросы. Инфраструктурный rate-limit не подтверждён.
+**Бесплатно.** Оригинальные материалы распространяются по лицензии CC BY 4.0: использование и переработка разрешены при указании автора, источника, лицензии и изменений.
 
-## English
+[Исходный код и документация](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader) · [Инструкция установки](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/blob/v1.3.0/INSTALL.md)
 
-Portable plugin and standalone skill with the original methodology, 13 references, and four read-only remote MCP tools for Crossref and public GitHub metadata. v1.3.0 adds privacy and terms pages, plugin icon, review scenarios and demonstration instructions. GitHub release only; ChatGPT directory approval has not been granted. Original materials by Marina Nemukhina, CC BY 4.0.
+## Что изменилось в версии 1.3.0
+
+Подготовлены страницы политики конфиденциальности и условий использования, фирменный знак, сценарии проверки и материалы для подачи в каталог ChatGPT. Сохранены все 13 справочных разделов. Установочный пакет включает отдельный скилл и подключение к MCP-серверу с четырьмя инструментами только для чтения.
+
+**Статус:** открытый GitHub-релиз. Публикация в каталоге ChatGPT пока не одобрена; условия доступа к MCP зависят от поддерживаемого ИИ-клиента. Не отправляйте персональные данные и секреты в публичный поиск. Инфраструктурные ограничения нагрузки ещё требуют подтверждения.
+
+**Автор:** Марина Немухина / Marina Nemukhina.
+
+## English summary
+
+**Nemukhina Signal Reader — expands the space of possibilities.** A reasoning workflow for interpreting signals, testing competing causal explanations, and choosing informative next checks under uncertainty. Includes 13 reference sections, a standalone skill and four read-only remote MCP tools for Crossref and public GitHub metadata. Free original material under CC BY 4.0 with attribution to Marina Nemukhina. GitHub release only; not yet approved for the ChatGPT directory.
