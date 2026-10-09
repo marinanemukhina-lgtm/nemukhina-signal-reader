@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'mcp-server/**'
+      - 'README.md'
       - '.github/workflows/mcp-ci.yml'
   pull_request:
     paths:
@@ -26,6 +27,8 @@ jobs:
           node-version: '22'
       - name: Установка зависимостей
         run: npm install --no-audit --no-fund
+      - name: Точное соответствие согласованного текста GitHub и Vercel
+        run: node scripts/check-description.mjs
       - name: Проверка входных ограничений
         run: npm test
       - name: TypeScript
