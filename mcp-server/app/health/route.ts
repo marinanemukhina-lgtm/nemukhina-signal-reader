@@ -1,0 +1,1 @@
+export function GET(){return Response.json({status:'ok',name:'Nemukhina Signal Reader MCP',version:'0.1.0',access:'public read-only',sources:['Crossref','GitHub'],tools:4});}
