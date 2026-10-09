@@ -1,0 +1,46 @@
+name: Проверка и релиз Signal Reader
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-release:
+    name: Проверка архива и публикация версии
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Получить исходники
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Проверить структуру и собрать архив
+        run: python3 scripts/build_release.py
+      - name: Проверить архив после сборки
+        run: |
+          python3 - <<'PY'
+          from zipfile import ZipFile
+          from pathlib import Path
+          for p in (Path("dist/skill.zip"), Path("dist/Nemukhina-Signal-Reader-v1.1.0.zip")):
+              with ZipFile(p) as z:
+                  assert z.testzip() is None
+                  assert sum(x.endswith("/SKILL.md") for x in z.namelist()) == 1
+                  assert any(x.endswith("/LICENSE") for x in z.namelist())
+          print("PASS: one installable skill, license present, ZIP integrity verified")
+          PY
+      - name: Опубликовать релиз v1.1.0 при его отсутствии
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1.1.0 >/dev/null 2>&1; then
+            echo "Release v1.1.0 already exists; preserving immutable published version."
+            exit 0
+          fi
+          gh release create v1.1.0 \
+            "dist/skill.zip#skill.zip" \
+            "dist/Nemukhina-Signal-Reader-v1.1.0.zip#Nemukhina-Signal-Reader-v1.1.0.zip" \
+            --target "$GITHUB_SHA" \
+            --title "Nemukhina Signal Reader v1.1.0" \
+            --notes "Единый устанавливаемый скилл для анализа сигналов, состояний, взаимодействий и решений. Полный исходный код, справочные разделы, CC BY 4.0 и обязательное указание авторства. Публичный MCP-сервер в релиз не входит."
