@@ -3,6 +3,15 @@ name: Проверка и релиз Signal Reader
 on:
   push:
     branches: [main]
+    paths:
+      - 'SKILL.md'
+      - 'README.md'
+      - 'LICENSE'
+      - 'ATTRIBUTION.md'
+      - 'agents/**'
+      - 'references/**'
+      - 'scripts/build_release.py'
+      - '.github/workflows/release.yml'
   workflow_dispatch:
 
 permissions:
