@@ -16,6 +16,20 @@ on:
       - 'references/**'
       - 'scripts/build_release.py'
       - '.github/workflows/release.yml'
+  pull_request:
+    paths:
+      - 'SKILL.md'
+      - 'README.md'
+      - 'LICENSE'
+      - 'ATTRIBUTION.md'
+      - 'INSTALL.md'
+      - 'PRIVACY.md'
+      - 'TERMS.md'
+      - 'plugin/**'
+      - 'agents/**'
+      - 'references/**'
+      - 'scripts/build_release.py'
+      - '.github/workflows/release.yml'
   workflow_dispatch:
 
 permissions:
@@ -44,6 +58,7 @@ jobs:
           print("PASS: one installable skill, license present, ZIP integrity verified")
           PY
       - name: Опубликовать релиз v1.3.0 при его отсутствии
+        if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
