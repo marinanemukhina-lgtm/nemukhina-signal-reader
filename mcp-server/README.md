@@ -4,7 +4,11 @@ MCP-сервер чтения, использующий `mcp-handler` 2.x и MCP
 
 Инструменты: `search_scientific_literature`, `inspect_doi` (Crossref), `search_github_projects`, `inspect_github_project` (GitHub).
 
-Подключение: `https://<имя-проекта>.vercel.app/mcp`. Здоровье: `/health`.
+**Публичное подключение:** `https://nemukhina-signal-reader-mcp.vercel.app/mcp`.
+
+**Здоровье:** `https://nemukhina-signal-reader-mcp.vercel.app/health`.
+
+[Проверка production](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/actions/runs/37896614362): четыре инструмента, отклонение некорректного ввода, реальные GitHub и Crossref вызовы прошли.
 
 Next.js / Vercel, Node.js 20+, `npm install`, `npm run dev`. Ограничены входные данные, HTTP-хосты, переадресации, время и размер ответа. Нет внешних записей, пользовательских токенов и доступа к приватным данным. Сервер публичного чтения нуждается в инфраструктурных лимитах и защите от злоупотреблений перед широким анонимным распространением.
 
