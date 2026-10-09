@@ -17,6 +17,10 @@ for (const [path,needle] of [['/privacy','конфиденциальности']
   if (!page.ok || !body.includes(needle)) throw Error('Required policy page failed: '+path+' '+page.status);
   console.log('PUBLIC POLICY OK',path);
 }
+const page=await fetch(new URL('/',origin),{signal:AbortSignal.timeout(12000)});
+const html=await page.text();
+if(!page.ok || !html.includes('Разведывательная аналитика и HUMINT') || !html.includes('Nemukhina Signal Reader — расширяет поле возможного.'))throw Error('Canonical home page not published');
+console.log('LIVE WEBSITE DESCRIPTION OK');
 const client=new Client({name:'signal-reader-production-check',version:'0.1.0'});
 try {
   await client.connect(new StreamableHTTPClientTransport(server));
