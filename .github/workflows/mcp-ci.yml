@@ -32,3 +32,13 @@ jobs:
         run: npm run typecheck
       - name: Production build
         run: npm run build
+      - name: MCP protocol smoke — подключение и список инструментов
+        run: |
+          npm run start -- --hostname 127.0.0.1 > /tmp/signal-reader-next.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:3000/health > /dev/null 2>&1; then break; fi
+            sleep 1
+          done
+          npm run smoke || { cat /tmp/signal-reader-next.log; exit 1; }
