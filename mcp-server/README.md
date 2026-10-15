@@ -6,7 +6,7 @@ MCP-сервер чтения, использующий `mcp-handler` 2.x и MCP
 
 **Публичное подключение:** `https://nemukhina-signal-reader-mcp.vercel.app/mcp`.
 
-**Здоровье:** `https://nemukhina-signal-reader-mcp.vercel.app/health`.
+**Проверка работоспособности:** `https://nemukhina-signal-reader-mcp.vercel.app/health`.
 
 [Проверка production](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/actions/runs/37896614362): четыре инструмента, отклонение некорректного ввода, реальные GitHub и Crossref вызовы прошли.
 

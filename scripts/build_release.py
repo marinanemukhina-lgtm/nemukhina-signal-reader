@@ -10,7 +10,7 @@ import json
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 NAME = "nemukhina-signal-reader"
-VERSION = "v1.3.0"
+VERSION = "v1.3.1"
 
 skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
 assert skill.startswith("---\n"), "Missing YAML frontmatter"

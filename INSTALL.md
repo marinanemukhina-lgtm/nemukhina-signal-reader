@@ -14,13 +14,13 @@
 
 **Главное различие:** скилл определяет, *как анализировать информацию*; MCP даёт ИИ *доступ к внешним источникам*. Одно не заменяет другое. Для полного набора возможностей нужны обе части.
 
-[**Скачать готовые файлы — релиз v1.3.0**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/tag/v1.3.0)
+[**Скачать готовые файлы — релиз v1.3.1**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/tag/v1.3.1)
 
 ## Вариант 1. Полный Signal Reader
 
 Для приложения с поддержкой **Agent Plugins 1.0**:
 
-1. Скачайте [**Nemukhina-Signal-Reader-Plugin-v1.3.0.zip**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/download/v1.3.0/Nemukhina-Signal-Reader-Plugin-v1.3.0.zip).
+1. Скачайте [**Nemukhina-Signal-Reader-Plugin-v1.3.1.zip**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/download/v1.3.1/Nemukhina-Signal-Reader-Plugin-v1.3.1.zip).
 2. В своём ИИ-приложении найдите функцию установки плагина из архива и выберите этот ZIP-файл.
 3. Если клиент поддерживает обе части пакета, он получит методологию и адрес удалённого MCP-сервера. При необходимости подтвердите подключение сервера в настройках.
 4. Попробуйте запрос: **«Разбери мою ситуацию по Nemukhina Signal Reader: отдели наблюдения от гипотез, найди альтернативные объяснения и предложи следующую проверку».**
@@ -31,7 +31,7 @@
 
 Если ваше приложение поддерживает **Skills (навыки)**:
 
-1. Скачайте [**Nemukhina-Signal-Reader-v1.3.0.zip**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/download/v1.3.0/Nemukhina-Signal-Reader-v1.3.0.zip) или [**skill.zip**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/download/v1.3.0/skill.zip). Это альтернативные имена архива отдельного скилла, устанавливать оба не нужно.
+1. Скачайте [**Nemukhina-Signal-Reader-v1.3.1.zip**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/download/v1.3.1/Nemukhina-Signal-Reader-v1.3.1.zip) или [**skill.zip**](https://github.com/marinanemukhina-lgtm/nemukhina-signal-reader/releases/download/v1.3.1/skill.zip). Это альтернативные имена архива отдельного скилла, устанавливать оба не нужно.
 2. Добавьте архив как навык способом, который поддерживает ваше ИИ-приложение.
 3. Попросите ИИ применить Nemukhina Signal Reader к вашей задаче.
 
